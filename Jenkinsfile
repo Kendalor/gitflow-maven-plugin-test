@@ -30,7 +30,7 @@ pipeline {
 	                //sh './jenkins/scripts/deliver.sh' 
 	                projectPOM = readMavenPom file: "pom.xml"
 	                projectPOM.version
-	                projectPOM.artefactId
+	                projectPOM.artifactId
 	                projectPOM.groupId 
 	                }
             }
