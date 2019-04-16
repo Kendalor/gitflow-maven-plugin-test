@@ -26,7 +26,11 @@ pipeline {
         }
         stage('Deliver') { 
             steps {
-                sh './jenkins/scripts/deliver.sh' 
+                //sh './jenkins/scripts/deliver.sh' 
+                projectPOM = readMavenPom file: "pom.xml"
+                projectPOM.version
+                projectPOM.artefactId
+                projectPOM.groupId 
             }
         }
     }
