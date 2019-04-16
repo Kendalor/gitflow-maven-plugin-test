@@ -28,4 +28,4 @@ echo 'The following command runs and outputs the execution of your Java'
 echo 'application (which Jenkins built using Maven) to the Jenkins UI.'
 set -x
 java -jar target/${NAME}-${VERSION}.jar
-echo "Coppied Files to target/$(NAME)-$(VERSION).jar"
+echo "Coppied Files to target/";  echo $NAME; echo "-"; echo $VERSION; echo ".jar";
