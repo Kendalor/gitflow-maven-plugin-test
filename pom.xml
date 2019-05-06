@@ -43,8 +43,16 @@
               <goal>attached-rpm</goal>
             </goals>
             <configuration>
+            <group>simple-maven-app</group>
             	<targetOS>linux</targetOS>
             	<needarch>false</needarch>
+				<mappings>
+				<mapping>
+					<sources>
+						<source>target/${project.artifactId}-${projekct.version}.jar</source>
+					</sources>
+				</mapping>
+				</mappings>
             </configuration>
           </execution>
         </executions>
