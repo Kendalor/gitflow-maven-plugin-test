@@ -32,31 +32,7 @@
           </archive>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>rpm-maven-plugin</artifactId>
-        <version>2.2.0</version>
-        <executions>
-          <execution>
-            <id>generate-rpm</id>
-            <goals>
-              <goal>attached-rpm</goal>
-            </goals>
-            <configuration>
-            <group>simple-maven-app</group>
-            	<targetOS>linux</targetOS>
-            	<needarch>false</needarch>
-				<mappings>
-				<mapping>
-					<sources>
-						<source>target/${project.artifactId}-${projekct.version}.jar</source>
-					</sources>
-				</mapping>
-				</mappings>
-            </configuration>
-          </execution>
-        </executions>
-        </plugin>
+
       
       
     </plugins>
