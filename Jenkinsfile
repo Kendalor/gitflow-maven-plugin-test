@@ -36,24 +36,26 @@ pipeline {
             }
         }
         stage('SSH transfer') {
-			 script {
-				sshPublisher(
-					continueOnError: false, failOnError: true,
-					publishers: [
-					sshPublisherDesc(
-						configName: "ssh_test",
-						verbose: true,
-						transfers: [
-							sshTransfer(
-								sourceFiles: "target/*.jar",
-								remoteDirectory: "${env.JOB_NAME}/${env.BUILD_NUMBER}",
-								execCommand: "run commands after copy?"
+        	steps {
+			 	script {
+					sshPublisher(
+						continueOnError: false, failOnError: true,
+						publishers: [
+							sshPublisherDesc(
+								configName: "ssh_test",
+								verbose: true,
+								transfers: [
+									sshTransfer(
+										sourceFiles: "target/*.jar",
+										remoteDirectory: "${env.JOB_NAME}/${env.BUILD_NUMBER}",
+										execCommand: "run commands after copy?"
+									)
+								]
 							)
-						]
-					)
-			   		]
+			   			]
 			   		)
-			 }
+			 	}
 			}
-    }
+    	}
+	}
 }
