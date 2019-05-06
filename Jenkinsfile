@@ -47,6 +47,7 @@ pipeline {
 								transfers: [
 									sshTransfer(
 										sourceFiles: "target/*.jar",
+										removePrefix: "target/",
 										remoteDirectory: "${env.JOB_NAME}/${env.BUILD_NUMBER}",
 										execCommand: "echo 'did Stuff'"
 									)
