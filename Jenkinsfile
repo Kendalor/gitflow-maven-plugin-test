@@ -48,7 +48,7 @@ pipeline {
 									sshTransfer(
 										sourceFiles: "target/*.jar",
 										remoteDirectory: "${env.JOB_NAME}/${env.BUILD_NUMBER}",
-										execCommand: "run commands after copy?"
+										execCommand: "echo 'did Stuff'"
 									)
 								]
 							)
