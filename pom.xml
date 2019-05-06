@@ -40,8 +40,12 @@
           <execution>
             <id>generate-rpm</id>
             <goals>
-              <goal>rpm</goal>
+              <goal>attached-rpm</goal>
             </goals>
+            <configuration>
+            	<targetOS>linux</targetOS>
+            	<needarch>false</needarch>
+            </configuration>
           </execution>
         </executions>
         </plugin>
