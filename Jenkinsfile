@@ -57,7 +57,7 @@ pipeline {
 									),
 									sshTransfer(
 										remoteDirectory: "${env.JOB_NAME}/${env.BUILD_NUMBER}",
-										execCommand: "apt-get -y update'"
+										execCommand: "apt-get -y update"
 									)
 								]
 							)
