@@ -49,12 +49,11 @@ pipeline {
 										sourceFiles: "target/*.jar",
 										removePrefix: "target/",
 										remoteDirectory: "${env.JOB_NAME}/${env.BUILD_NUMBER}",
-										execCommand: "echo 'did Stuff'",
+										execCommand: "echo 'Transfer Files and do Stuff'",
 									),
 									sshTransfer(
 										remoteDirectory: "${env.JOB_NAME}/${env.BUILD_NUMBER}",
 										execCommand: "echo 'did more Stuff'",
-										execCommand: "apt-get -y update'"
 									),
 									sshTransfer(
 										remoteDirectory: "${env.JOB_NAME}/${env.BUILD_NUMBER}",
