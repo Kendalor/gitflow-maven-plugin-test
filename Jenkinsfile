@@ -35,5 +35,36 @@ pipeline {
 	                }
             }
         }
-    }
+        stage('SSH transfer') {
+        	steps {
+			 	script {
+					sshPublisher(
+						continueOnError: false, failOnError: true,
+						publishers: [
+							sshPublisherDesc(
+								configName: "ssh_test",
+								verbose: true,
+								transfers: [
+									sshTransfer(
+										sourceFiles: "target/*.jar",
+										removePrefix: "target/",
+										remoteDirectory: "${env.JOB_NAME}/${env.BUILD_NUMBER}",
+										execCommand: "echo 'Transfer Files and do Stuff'",
+									),
+									sshTransfer(
+										remoteDirectory: "${env.JOB_NAME}/${env.BUILD_NUMBER}",
+										execCommand: "echo 'did more Stuff'",
+									),
+									sshTransfer(
+										remoteDirectory: "${env.JOB_NAME}/${env.BUILD_NUMBER}",
+										execCommand: "apt-get -y update"
+									)
+								]
+							)
+			   			]
+			   		)
+			 	}
+			}
+    	}
+	}
 }
