@@ -9,11 +9,6 @@ pipeline {
         skipStagesAfterUnstable()
     }
     stages {
-        stage('Build') {
-            steps {
-                sh 'mvn -B -DskipTests clean package'
-            }
-        }
 	  	stage('SonarQube analysis') {
 	  		steps {
 			    withSonarQubeEnv(credentialsId: 'testID for SonarQubeServer', installationName: 'SonarQubeServer') { // You can override the credential to be used
@@ -21,15 +16,13 @@ pipeline {
 			    }
 		    }
 	  	}
-        stage('Deliver') { 
+	  	stage("Quality Gate") {
             steps {
-            	script {
-	                //sh './jenkins/scripts/deliver.sh' 
-	                projectPOM = readMavenPom file: "pom.xml"
-	                echo "Version: ${projectPOM.version}"
-	                echo "ArtefactId: ${projectPOM.artifactId}"
-	                projectPOM.groupId 
-	                }
+                timeout(time: 1, unit: 'HOURS') {
+                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+                    // true = set pipeline to UNSTABLE, false = don't
+                    waitForQualityGate abortPipeline: true
+                }
             }
         }
 	}
